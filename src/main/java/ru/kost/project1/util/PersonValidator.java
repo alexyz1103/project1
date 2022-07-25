@@ -28,8 +28,5 @@ public class PersonValidator implements Validator {
         if (personDAO.show(person.getFio()).isPresent()){
             errors.rejectValue("fio","","Человек с таким ФИО уже есть в базе данных");
         }
-        if(person.getYear_birth() < 1900){
-            errors.rejectValue("year_birth","", "Год рождения должен быть больше 1900");
-        }
     }
 }

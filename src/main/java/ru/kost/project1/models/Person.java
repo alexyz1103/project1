@@ -1,17 +1,20 @@
 package ru.kost.project1.models;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.Calendar;
 
 public class Person {
     private int id;
     @NotEmpty(message = "ФИО не должно быть пустым")
     @Size(min = 2,max = 50,message = "ФИО должно должно содержать от 2 до 30 символов")
-
     private String fio;
-
-    //@Min(value = 1900, message = "Это проверка в анотацииГод рождения дожен быть больше 1900")
+//    Calendar cal = Calendar.getInstance();
+//    private final int MAX_YEAR = cal.get(Calendar.YEAR);
+    @Min(value = 1900, message = "Год рождения дожен быть больше 1900")
+    @Max(value = 2022, message = "Год рождения не должен превышать текущий год")
     private int year_birth;
 
     public Person(int id, String fio, int year_birth) {
