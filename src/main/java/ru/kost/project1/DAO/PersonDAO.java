@@ -3,6 +3,7 @@ package ru.kost.project1.DAO;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import ru.kost.project1.models.Books;
 import ru.kost.project1.models.Person;
 
 import java.util.List;
@@ -32,6 +33,11 @@ public class PersonDAO {
         return jdbcTemplate.query("SELECT * FROM person WHERE fio=? AND id!=?",
                 new Object[] {fio, id},
                 new BeanPropertyRowMapper<>(Person.class)).stream().findAny();
+    }
+    public List<Books> bookForPerson (int id){
+        return jdbcTemplate.query("SELECT * FROM book WHERE person_id=?",
+                new Object[]{id},
+                new BeanPropertyRowMapper<>(Books.class));
     }
 
     public void save(Person person) {

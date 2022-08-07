@@ -9,6 +9,18 @@
 <p th:text="'ФИО: ' + ${person.getFio()}"></p>
 <p th:text="'Год рождения: ' + ${person.getYear_birth()}"></p>
 <br/>
+<div th:if="${books.isEmpty}">
+    <p>Человек не взял ни одной книги</p>
+    <hr/>
+</div>
+<div th:if="${!books.isEmpty()}">
+    <hr/>
+    <table th:each="book : ${books}" >
+        <tr th:text="${book.getBook_id()}+', '+${book.getBook_name}+', '+${book.getBook_autor}+', '+${book.getBook_year}"/>
+    </table>
+    <hr/>
+</div>
+<br/>
 <a th:href="@{/people/{id}/edit(id=${person.getId()})}">Редактировать данные</a>
 <br/>
 <br/>
